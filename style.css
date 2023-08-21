@@ -28,7 +28,7 @@ h1 {
 }
 
 /* Style the side navigation */
-.sidenav {
+.topnav {
   font-family: 'Roboto', sans-serif;
   height: 100px;
   width: 100%;
@@ -41,7 +41,7 @@ h1 {
 }
   
 /* Side navigation links */
-.sidenav a {
+.topnav a {
   color: white;
   padding: 16px;
   text-decoration: none;

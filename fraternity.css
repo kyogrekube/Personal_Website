@@ -23,20 +23,6 @@ h2 {
     text-align: center;
 }
 
-h3 {
-	font-size: 16px;
-	font-style: normal;
-	text-align: center;
-    color: rgb(49, 49, 49);
-}
-
-h4 {
-	font-size: 16px;
-	font-style: bold;
-	text-align: center;
-    color: rgb(49, 49, 49);
-}
-
 /* Style the top navigation */
 .sameline {
 	font-family: 'Roboto', sans-serif;

@@ -1,42 +1,670 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="home.css">
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <title>Alex Litchfield</title>
-    
-    <script src="https://kit.fontawesome.com/e4e31e32fd.js" crossorigin="anonymous"></script>
-</head>
-<!--For every .html file, do ./name (not .html following) and for index.html do "./"-->
-<body>
-    <nav class="sameline">
-        <div class="navbar_right">
-            <a href="contact.html">Contact</a>
-            <div class="dropdown">
-                <button class="dropbtn">Experience
-                    <i class="fa-solid fa-angle-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="employment.html">Employment</a>
-                    <a href="fraternity.html">Fraternity Life</a>
-                </div>
-            </div>
-            <a href="about.html">About</a>
-            <a class="active" href="index.html">Home</a>
-        </div>
-        <div class="navbar_left">
-            <img class="comp_img_small" src="images/pose_2_transparent.png" alt="Composite Photo" align="left">
-            <a href="index.html">Alex Litchfield</a>
-        </div>
-    </nav>
-    <div class="content">
-        <header>
-            <h1>Alex Litchfield</h1>
-            <h2>Bachelor's degree in Computer Science with a minor in Cognitive Science of Artificial Intelligence</h2>
-            <h3>Rensselaer Polytechnic Institute - Class of 2025</h3>
-            <img class="comp_img" src="images/pose_2_transparent.png" alt="Composite Photo">
-        </header>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .welcome-section {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        position: relative;
+        background: url("./images/cs_home_img.jpeg") no-repeat center center;
+        background-size: cover;
+        color: white;
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        text-align: center;
+      }
+      .welcome-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .welcome-text {
+        font-size: 2.5rem;
+        white-space: pre;
+      }
+      .welcome-subtext {
+        font-size: 1rem;
+        white-space: pre;
+        margin-bottom: 20px;
+      }
+      .welcome-section button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .welcome-section a {
+        font-size: 32px; /* Adjust the size as needed */
+        color: white;
+        text-decoration: none;
+        transition: transform 0.2s ease;
+      }
+      .welcome-section a:hover {
+        transform: translateY(3px); /* Example hover effect */
+      }
+
+      .button-container a {
+        font-size: 32px; /* Set the initial size */
+        color: white;
+        text-decoration: none;
+        transition: transform 0.2s ease;
+      }
+
+      .button-container a i {
+        margin-top: 100px;
+        font-size: 96px; /* 3 times bigger than the initial size */
+      }
+      header {
+        position: -webkit-sticky; /* For Safari */
+        position: sticky;
+        top: 0;
+        background-color: #333;
+        width: 100%;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header .brand {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding: 0 20px;
+        text-decoration: none;
+        margin-left: 80px; /* Adjust the margin */
+      }
+      header nav {
+        display: flex;
+        margin-right: 80px; /* Adjust the margin */
+      }
+      header nav a {
+        color: white;
+        padding: 14px 20px;
+        text-decoration: none;
+        text-align: center;
+        transition: background-color 0.2s ease; /* Added transition for background color */
+      }
+      header nav a.active,
+      header nav a:hover {
+        background-color: #575757;
+      }
+      section {
+        padding-top: 50px;
+        text-align: center;
+        background-color: rgb(189, 189, 230)
+      }
+      h1 {
+        font-size: 40px;
+      }
+      /*#section1 {
+        background-color: #f4f4f4;
+      }
+      #section2 {
+        background-color: #e2e2e2;
+      }
+      #section3 {
+        background-color: #c4c4c4;
+      }
+      #section4 {
+        background-color: #a6a6a6;
+      }*/
+      .section-content {
+        border-radius: 150px;
+        background-color: white;
+        max-width: 900px;
+        margin: 0 auto;
+        padding-bottom: 2em;
+      }
+      .details {
+        display: none;
+        padding-top: 20px;
+        text-align: left;
+        max-width: 490px;
+        margin-left: 200px;
+        margin-right: 150px;
+        /*border-style: solid;
+        border-color: green;*/
+      }
+      .details.active {
+        display: block;
+      }
+      .details-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        font-size: inherit;
+      }
+      .detail-section {
+        margin-bottom: 20px; /* Adjust the margin as needed */
+        /*border-style: solid;
+        border-color: orange;*/
+      }
+      .section-flexbox {
+        padding-top: 1px;
+        padding-bottom: 1px;
+        /*border-style: solid;
+        border-color: blue;*/
+      }
+      .p-limiter {
+        margin-left: 150px;
+        margin-right: 150px;
+        max-width: 600px;
+      }
+      .detail-container1,
+      .detail-container2 {
+        margin-top: 20px;
+        margin-left: 50px;
+        margin-right: 50px;
+        min-height: 40vh;
+        /*border-style: solid;
+        border-color: red;*/
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px; /* Adjust the gap as needed */
+      }
+      .detail-container1 {
+        margin-bottom: 40px;
+      }
+      .detail-container2 {
+        margin-bottom: 20px;
+      }
+      .detail-box {
+        perspective: 1000px;
+        width: 28%;
+        max-width: 300px;
+        cursor: pointer;
+        box-sizing: border-box;
+        text-align: left;
+      }
+      .detail-box-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+      }
+      .detail-box-front,
+      .detail-box-back {
+        text-align: center;
+        height: 40vh;
+        position: absolute;
+        width: 100%;
+        backface-visibility: hidden;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        box-sizing: border-box;
+        overflow: auto;
+        
+      }
+      .detail-box-front {
+        /*background-color: rgb(222, 196, 196);
+        background-color: rgb(207, 222, 196);
+        background-color: rgb(196, 203, 222);
+        background-color: rgb(212, 196, 222);*/
+        background-color: #fff;
+      }
+      .detail-box-back {
+        background-color: #fff;
+        transform: rotateY(180deg);
+      }
+      .detail-box.flipped .detail-box-inner {
+        transform: rotateY(180deg);
+      }
+      footer {
+        padding: 50px;
+        background-color: #333;
+        color: white;
+      }
+      .footer-button {
+        font-size: 80px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition: transform 0.3s ease-out;
+      }
+
+      /*.footer {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+      }
+
+      .footer-button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.3s ease-out;
+      }*/
+
+      .footer-button:hover {
+        transform: scale(1.1);
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div class="welcome-section" id="welcome">
+      <div class="welcome-content">
+        <div class="welcome-subtext" id="welcomeSubtext"></div>
+        <div class="welcome-text" id="welcomeText"></div>
+      </div>
+      <div class="button-container">
+        <a href="#section1" id="startButton">
+          <i class="fas fa-circle-down fa-3x"></i>
+        </a>
+      </div>
     </div>
-</body>
+
+    <header>
+      <a href="#welcome" class="brand">Alex Litchfield</a>
+      <nav>
+        <a href="#welcome" class="nav-link">Home</a>
+        <a href="#section1" class="nav-link">About</a>
+        <a href="#section2" class="nav-link">Employment</a>
+        <a href="#section3" class="nav-link">Portfolio</a>
+        <a href="#section4" class="nav-link">Contact</a>
+      </nav>
+    </header>
+    <section id="section1">
+      <div class="section-content">
+        <div class="section-flexbox">
+          <h1>About Me</h1>
+          <p class="p-limiter">
+            My name is Alex Litchfield and I am currently pursuing a Bachelor's
+            degree in Computer Science with a minor in Cognitive Science of
+            Artificial Intelligence. I recently worked as an intern at New England
+            Hydropower Company during the summer of 2023 and plan to finish my
+            education at RPI in May 2025. I am currently working on building my
+            programming portfolio and am passionate about automation.
+          </p>
+        </div>
+        <div class="section-flexbox">
+          <h1>Education</h1>
+          <img
+            src="https://asset.brandfetch.io/idhnoK6Ry7/idgMV6GfG_.png"
+            alt="Education Image"
+            width="25%"
+            height="25%"
+          />
+          <h3>
+            Rensselaer Polytechnic Institute, Troy, NY — B.S. in Computer Science
+          </h3>
+          <h4>August 2021 - Present (Estimated graduation date is May 2025)</h4>
+          <div class="detail-section">
+            <h4>Completed Coursework</h4>
+            <div class="detail-container1">
+              <div class="detail-box" onclick="toggleFlip(this)">
+                <div class="detail-box-inner">
+                  <div class="detail-box-front">
+                    <h1><i class="fa-solid fa-computer"></i></h1>
+                    <h3>Computer Science</h3>
+                  </div>
+                  <div class="detail-box-back">
+                    <p><b>Computer Science</b></p>
+                    <p>Computer Science 1</p>
+                    <p>Data Structures</p>
+                    <p>Foundations of Computer Science</p>
+                    <p>Computer Organization</p>
+                    <p>Introduction to Algorithms</p>
+                    <p>Data Mining</li>
+                    <p>Software Documentation and Design</p>
+                    <p>Principles of Software</p>
+                    <p>Operating Systems</p>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-box" onclick="toggleFlip(this)">
+                <div class="detail-box-inner">
+                  <div class="detail-box-front">
+                    <h1><i class="fa-solid fa-database"></i></h1>
+                    <h3>Information Technology and Web Science</h3>
+                  </div>
+                  <div class="detail-box-back">
+                    <p><b>Information Technology and Web Science</b></p>
+                    <p>Information Systems Security</p>
+                    <p>Introduction to IT and Web Science</p>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-box" onclick="toggleFlip(this)">
+                <div class="detail-box-inner">
+                  <div class="detail-box-front">
+                    <h1><i class="fa-solid fa-calculator"></i></h1>
+                    <h3>Math</h3>
+                  </div>
+                  <div class="detail-box-back">
+                    <p><b>Math</b></p>
+                    <p>Calculus 1</p>
+                    <p>Calculus 2</p>
+                    <p>Multivariable Calculus and Matrix Algebra</p>
+                    <p>Linear Algebra</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="detail-container2">
+              <div class="detail-box" onclick="toggleFlip(this)">
+                <div class="detail-box-inner">
+                  <div class="detail-box-front">
+                    <h1><i class="fa-solid fa-flask"></i></h1>
+                    <h3>General Sciences</h3>
+                  </div>
+                  <div class="detail-box-back">
+                    <p><b>General Sciences</b></p>
+                    <p>Physics</p>
+                    <p>Biology</p>
+                    <p>Chemistry</p>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-box" onclick="toggleFlip(this)">
+                <div class="detail-box-inner">
+                  <div class="detail-box-front">
+                    <h1><i class="fa-solid fa-brain"></i></h1>
+                    <h3>Cognitive Science</h3>
+                  </div>
+                  <div class="detail-box-back">
+                    <p><b>Cognitive Science</b></p>
+                    <p>Introduction to Cognitive Science</p>
+                    <p>Introduction to Linguistics</p>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-box" onclick="toggleFlip(this)">
+                <div class="detail-box-inner">
+                  <div class="detail-box-front">
+                    <h1><i class="fa-solid fa-thumbtack"></i></h1>
+                    <h3>Misc</h3>
+                  </div>
+                  <div class="detail-box-back">
+                    <p><b>Misc</b></p>
+                    <p>The Genome and You</p>
+                    <p>AI and Society</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h4>Current Coursework</h4>
+            <div class="detail-container1">
+              <div class="detail-box" onclick="toggleFlip(this)">
+                <div class="detail-box-inner">
+                  <div class="detail-box-front">
+                    <h1><i class="fa-solid fa-computer"></i></h1>
+                    <h3> Computer Science</h3>
+                  </div>
+                  <div class="detail-box-back">
+                    <p><b>Computer Science</b></p>
+                    <p>Introduction to Competitive Programming</p>
+                    <p>Programming Languages</p>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-box" onclick="toggleFlip(this)">
+                <div class="detail-box-inner">
+                  <div class="detail-box-front">
+                    <h1><i class="fa-solid fa-database"></i></h1>
+                    <h3>Information Technology and Web Science</h3>
+                  </div>
+                  <div class="detail-box-back">
+                    <p><b>Information Technology and Web Science</b></p>
+                    <p>Web Systems Development</p>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-box" onclick="toggleFlip(this)">
+                <div class="detail-box-inner">
+                  <div class="detail-box-front">
+                    <h1><i class="fa-solid fa-thumbtack"></i></h1>
+                    <h3>Misc</h3>
+                  </div>
+                  <div class="detail-box-back">
+                    <p><b>Misc</b></p>
+                    <p>Bioethics</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3>St. John's Preparatory School, Danvers, MA — High School</h3>
+        </div>
+        <div class="section-flexbox">
+          <h1>Leadership and Participation</h1>
+          <div class="detail-section">
+            <h3 style="display: inline-block; margin-right: 10px">Phi Gamma Delta Tau Nu Chapter at Rensselaer</h3>
+            <button class="details-button" onclick="toggleDetails('leadershipDetails1')">
+              <i class="fas fa-info-circle"></i>
+            </button>
+            <div class="details" id="leadershipDetails1">
+              <ul>
+                <li><b>Housing Committee Chair (Fall 2022):</b> Ensured members kept house in clean condition, organized weekly workparties, and maintained stock of everyday items such as trashbags and paper towels</li>
+                <li><b>Web Committee Chair (Fall 2022 - Spring 2023):</b> Ensured that the house Wi-Fi was maintained properly and running</li>
+                <li><b>Treasurer/Vice President (Fall 2022 - Fall 2023):</b> Collected semesterly dues, fines, and other fees from members. Maintained a semesterly budget for the brotherhood that documented all purchases incoming funds</li>
+                <li><b>Philanthropy/Community Service Committee Chair (Fall 2022 - Spring 2023):</b> Organized and ran philanthropy and community service events, ensured members met minimum number of service hours, and organized a week long philanthropy event on campus that raised $2128.02, which beat the previous record of $1500</li>
+                <li><b>Brotherhood Committee Chair (Spring 2023):</b> Organized brotherhood events and other activities that would promote bonding amongst the brotherhood</li>
+                <li><b>Social Committee Chair (Spring 2023):</b> Organized social events such as activities with other organizations and (at this time) the brotherhood formal for the semester</li>
+                <li><b>Public Relations Committee Chair (Spring 2023):</b> Maintained public relations through communication outside the brotherhood and our social media platforms</li>
+                <li><b>Formal Committee Chair (Fall 2024):</b> Organized our brotherhood formal for the semester (now a separate committee from Social)</li>
+                <li><b>Recruitment Committee Chair (Fall 2024):</b> Organized recruitment events, designed rush calendars and other media, ensured each member of the brotherhood participated in events</li>
+              </ul>
+            </div>
+          </div>
+          <div class="detail-section">
+            <h3 style="display: inline-block; margin-right: 10px">St. John's Preparatory School</h3>
+            <button class="details-button" onclick="toggleDetails('leadershipDetails2')">
+              <i class="fas fa-info-circle"></i>
+            </button>
+            <div class="details" id="leadershipDetails2">
+              <ul>
+                <li><b>Lead Programmer for "Mecha Eagles" VEX Robotics Team at St. John's Prep (2018 - 2021):</b> Led the software development of the St. John's robotics team</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="section-flexbox">
+          <h1>Awards</h1>
+          <div class="detail-section">
+            <h3 style="display: inline-block; margin-right: 10px">Rensselaer Polytechnic Institute</h3>
+            <button class="details-button" onclick="toggleDetails('awardDetails1')">
+              <i class="fas fa-info-circle"></i>
+            </button>
+            <div class="details" id="awardDetails1">
+              <ul>
+                <li><b>Rensselaer Leadership Award (2021 - Present):</b> Given in recognition of an outstanding record of academic and personal achievements, a strong commitment to excellence, and illustration of intellectual curiosity.</li>
+                <li><b>Dean's List:</b> Given in recognition of attaining a grade point average of 3.00 or better and having no grade below C</li>
+              </ul>
+            </div>
+          </div>
+          <div class="detail-section">
+            <h3 style="display: inline-block; margin-right: 10px">St. John's Preparatory School</h3>
+            <button class="details-button" onclick="toggleDetails('awardDetails2')">
+              <i class="fas fa-info-circle"></i>
+            </button>
+            <div class="details" id="awardDetails2">
+              <ul>
+                <li><b>National Honors Society (2018 - 2021):</b> Received for maintaining a GPA higher than 4.3/5, demonstrated leadership and good character, and participating in over 40 verified hours of community service</li>
+                <li><b>Language Honors Society (2017 - 2021):</b> Received for maintaining an A- or higher in a Latin course each year</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="section2">
+      <div class="section-content">
+        <div class="section-flexbox">
+          <h1>Employment</h1>
+          <img
+            src="https://asset.brandfetch.io/idhnoK6Ry7/idgMV6GfG_.png"
+            alt="CS1 Mentoring image"
+            width="20%"
+            height="20%"
+          />
+          <h3>Location: Troy, NY</h3>
+          <h3>Position: Computer Science 1 Mentor</h3>
+          <h3>Time Period: August 2023 - May 2024</h3>
+          <p class="p-limiter">Mentored, provided feedback, evaluated students' work, and provided homework assistance for assignments during weekly office hours</p>
+          <a href="https://www.nehydropower.com/"><img
+            src="./images/nehc.png"
+            alt="NEHC image"
+            width="25%"
+            height="25%"
+          /></a>
+          <h3>Location: Beverly, MA</h3>
+          <h3>Position: Intern</h3>
+          <h3>Time Period: June 2023 - August 2023</h3>
+          <p class="p-limiter">Surveyed a suitable hydropower site, modeled pre- and post-construction river flows, created a program using Python to automate the process, developed control a schema for a hydropower plant, and wrote a request for proposal to build a control system. This was to study and codify how a system will behave under conditions at a specific site. This involved studying the flow dynamics of waterways where plants are under consideration, and optimization and regulation of the damping and control of the operation.</p>
+          <a href="https://www.lowes.com/"><img
+            src="./images/lowes_transparent.png"
+            alt="Lowes image"
+            width="25%"
+            height="25%"
+          /></a>
+          <h3>Location: Epping, NH</h3>
+          <h3>Position: Receiver/Stocker</h3>
+          <h3>Time Period: June 2021 - June 2023</h3>
+          <p class="p-limiter">Managed a list of products requiring restock, cleaned and organized shelves, provided daily customer service, learned and followed unloading procedures which included general products to cleaning and chemical spill cleanup/removal, worked with a team of 3-6 individuals on a daily basis to maintain a timely and efficient unloading process of delivery trucks, and helped customers find the products they were looking for.</p>
+          <a href="https://www.shopmarketbasket.com/"><img
+            src="./images/market_basket.png"
+            alt="Market Basket image"
+            width="25%"
+            height="25%"
+          /></a>
+          <h3>Location: Epping, NH</h3>
+          <h3>Position: Grocery Clerk</h3>
+          <h3>Time Period: August 2020 - June 2021</h3>
+          <p class="p-limiter">Managed a list of products requiring restock, cleaned and organized shelves, daily provided customer service daily, learned standard cleanup procedures for chemical and non chemical spills, worked with a team of 10-20 individuals on a daily basis to maintain a friendly work environment that kept shelves stocked, clean, and helped customers find the products they were looking for.</p>
+        </div>
+      </div>
+    </section>
+    <section id="section3">
+      <div class="section-content">
+        <div class="section-flexbox">
+          <h1>Portfolio</h1>
+          <p>TBD</p>
+        </div>
+      </div>
+    </section>
+    <section id="section4">
+      <footer>
+        <button class="footer-button" onclick="footerButtonRedirect()">
+          <i class="fa-brands fa-linkedin"></i>
+        </button>
+        <h4>Created and Maintained by Alex Litchfield</h4>
+      </footer>
+    </section>
+    <script>
+      function footerButtonRedirect() {
+        window.location.href = "https://www.linkedin.com/in/alex-litchfield-18282b252/";
+      }
+      function revealTextRandomly(text, elementId, interval) {
+        const textArray = text.split("");
+        const displayArray = new Array(textArray.length).fill(" ");
+        const indices = Array.from(textArray.keys());
+        shuffleArray(indices);
+        let index = 0;
+
+        function shuffleArray(array) {
+          for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+          }
+        }
+
+        function revealNextChar() {
+          if (index < indices.length) {
+            displayArray[indices[index]] = textArray[indices[index]];
+            document.getElementById(elementId).textContent =
+              displayArray.join("");
+            index++;
+            setTimeout(revealNextChar, interval);
+          }
+        }
+        revealNextChar();
+      }
+
+      function toggleDetails(idName) {
+        const details = document.getElementById(idName);
+        details.classList.toggle("active");
+      }
+
+      function toggleFlip(element) {
+        element.classList.toggle('flipped');
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        revealTextRandomly(
+          "Hello, my name is Alex Litchfield and I am a",
+          "welcomeSubtext",
+          100
+        );
+        revealTextRandomly(
+          "Computer Science Student at Rensselaer Polytechnic Institute",
+          "welcomeText",
+          70
+        );
+      });
+
+      document
+        .getElementById("startButton")
+        .addEventListener("click", function () {
+          document.querySelector("#section1").scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href").substring(1);
+          document.getElementById(targetId).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Highlight active section in the navbar
+      window.addEventListener("scroll", () => {
+        const sections = document.querySelectorAll("section");
+        let current = "";
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (pageYOffset >= sectionTop - sectionHeight / 3) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        document.querySelectorAll("nav a").forEach((a) => {
+          a.classList.remove("active");
+          if (
+            a.getAttribute("href").substring(1) === current ||
+            (current === "" && a.getAttribute("href") === "#welcome")
+          ) {
+            a.classList.add("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
